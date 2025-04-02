@@ -1,0 +1,16 @@
+{
+    "name": "vercel-server",
+    "version": "1.0.0",
+    "description": "Express server deployed on Vercel",
+    "main": "server.js",
+    "type": "module",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2",
+      "dotenv": "^16.0.3",
+      "axios": "^1.3.0"
+    }
+  }
+  
