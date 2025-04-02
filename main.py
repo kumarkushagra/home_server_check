@@ -1,8 +1,8 @@
 import os
 import requests
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from dotenv import load_dotenv
+from pydantic import BaseModel # type: ignore
+from dotenv import load_dotenv # type: ignore
 
 load_dotenv()
 
@@ -25,7 +25,10 @@ def send_url(data: URLRequest):
 
     except requests.RequestException as e:
         raise HTTPException(status_code=500, detail=str(e))
+@app.get("/")
+def read_root():
+    return {"message": "Hello from Vercel!"}
 
-# if __name__ == "__main__":
-#     import uvicorn
-#     uvicorn.run(app, port=8000, reload=True)
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, port=8000)
