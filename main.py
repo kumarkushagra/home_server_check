@@ -15,3 +15,6 @@ async def root():
             print(f"An error occurred: {e}")
             return "offline"
     return fetch_data("ssh.devvdeploy.site")
+
+if __name__=="__main__":
+    uvicorn.run(app, port=8000)
