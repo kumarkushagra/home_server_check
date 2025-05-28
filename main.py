@@ -3,18 +3,17 @@ import requests
 
 app = FastAPI()
 
+def fetch_data(url: str) -> str:
+    try:
+        response = requests.get(url)
+        response.raise_for_status()
+        return "online"
+    except requests.exceptions.RequestException:
+        return "offline"
 
 @app.get("/")
 async def root():
-    def fetch_data(url):
-        try:
-            response = requests.get(url)
-            response.raise_for_status()  # Raise an error for bad responses
-            return "online"  # Assuming the response is in JSON format
-        except requests.exceptions.RequestException as e:
-            print(f"An error occurred: {e}")
-            return "offline"
-    return fetch_data("ssh.devvdeploy.site")
+    return fetch_data("https://ssh.devvdeploy.site")
 
 if __name__=="__main__":
     uvicorn.run(app, port=8000)
